@@ -4,7 +4,7 @@ https://diagnostic-detective-app.streamlit.app/
 
 ## Autorinnen
 
-Naomi Meisser (meissnao@students.zhaw.ch)
+Naomi Meisser (meissnao@students.zhaw.ch),
 Sina Bösiger (boesisin@students.zhaw.ch)
 
 
