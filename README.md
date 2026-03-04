@@ -2,8 +2,9 @@
 
 https://diagnostic-detective-app.streamlit.app/
 
-## Autor
+## Autorinnen
 
-Samuel Wehrli (wehs@zhaw.ch)
+Naomi Meisser (meissnao@students.zhaw.ch)
+Sina Bösiger (boesisin@students.zhaw.ch)
 
 
