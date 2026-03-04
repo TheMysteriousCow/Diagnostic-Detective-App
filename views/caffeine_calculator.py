@@ -7,7 +7,7 @@ from functions.caffeine_math import caffeine_remaining
 st.markdown("""
 <style>
 .stApp {
-    background-color: #f5ede1;
+    background-color: #FFFFFF;
 }
 
 .coffee-bean {
@@ -162,7 +162,6 @@ if submit:
 
     current = caffeine_remaining(dose_mg, hours_since, half_life)
 
-    # Calculate when caffeine reaches zero
     caffeine_zero_time = None
     for h in range(1, horizon + 1):
         if caffeine_remaining(dose_mg, h, half_life) < 0.5:
