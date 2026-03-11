@@ -4,6 +4,10 @@ import pandas as pd
 from datetime import datetime, date
 from functions.caffeine_math import caffeine_remaining
 
+# Tabelle speichern (wie beim BMI Beispiel)
+if "data_df" not in st.session_state:
+    st.session_state["data_df"] = pd.DataFrame()
+
 st.markdown("""
 <style>
 .stApp {
@@ -29,31 +33,6 @@ st.markdown("""
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)) brightness(0.95);
 }
 
-.coffee-bean::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(ellipse 50% 25% at 35% 20%, rgba(255,255,255,0.15), transparent 50%),
-        radial-gradient(ellipse 30% 40% at 20% 60%, rgba(0,0,0,0.08), transparent),
-        linear-gradient(135deg, rgba(200,100,50,0.1) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
-    border-radius: inherit;
-}
-
-.coffee-bean::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 65%;
-    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(60,30,15,0.3) 25%, rgba(0,0,0,0.3) 50%, rgba(60,30,15,0.3) 75%, rgba(0,0,0,0.5) 100%);
-    top: 18%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-    box-shadow: 1px 0 1px rgba(100,50,20,0.3);
-}
-
 @keyframes fall {
     to {
         transform: translateY(110vh) rotate(360deg);
@@ -62,6 +41,7 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 def coffee_rain():
     components.html("""
@@ -73,7 +53,6 @@ def coffee_rain():
         let bean = document.createElement("div");
         bean.className = "coffee-bean";
 
-        // Random horizontal position
         bean.style.left = Math.random() * 100 + "vw";
         bean.style.animationDuration = (4 + Math.random()*4) + "s";
 
@@ -85,6 +64,7 @@ def coffee_rain():
     }
     </script>
     """, height=0)
+
 
 st.title("☕ Koffeinabbau-Rechner")
 
@@ -151,6 +131,7 @@ with st.form("caffeine_form"):
 
     submit = st.form_submit_button("Ausrechnen")
 
+
 if submit:
 
     coffee_rain()
@@ -187,3 +168,29 @@ if submit:
     df = pd.DataFrame(data).set_index("Stunden")
 
     st.line_chart(df)
+
+    # ---------- Tabellen-Eintrag ----------
+
+    if caffeine_zero_time is not None:
+        zero_datetime = taken_at + pd.Timedelta(hours=caffeine_zero_time)
+        kein_koffein_text = f"nach {caffeine_zero_time} Stunde(n), um {zero_datetime.strftime('%H:%M')} Uhr"
+    else:
+        kein_koffein_text = f"nicht innerhalb von {horizon} Stunden"
+
+    new_row = {
+        "Getränk": drink,
+        "Wann eingenommen": taken_at.strftime("%d.%m.%Y %H:%M"),
+        "Koffeinmenge zu Beginn (mg)": round(dose_mg, 1),
+        "Kein Koffein mehr": kein_koffein_text
+    }
+
+    st.session_state["data_df"] = pd.concat(
+        [st.session_state["data_df"], pd.DataFrame([new_row])],
+        ignore_index=True
+    )
+
+
+# ---------- Tabelle anzeigen ----------
+
+st.subheader("📋 Verlauf der Getränke")
+st.dataframe(st.session_state["data_df"])
