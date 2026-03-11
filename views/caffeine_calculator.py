@@ -4,7 +4,6 @@ import pandas as pd
 from datetime import datetime, date
 from functions.caffeine_math import caffeine_remaining
 
-# Tabelle speichern (wie beim BMI Beispiel)
 if "data_df" not in st.session_state:
     st.session_state["data_df"] = pd.DataFrame()
 
@@ -169,7 +168,6 @@ if submit:
 
     st.line_chart(df)
 
-    # ---------- Tabellen-Eintrag ----------
 
     if caffeine_zero_time is not None:
         zero_datetime = taken_at + pd.Timedelta(hours=caffeine_zero_time)
@@ -189,8 +187,6 @@ if submit:
         ignore_index=True
     )
 
-
-# ---------- Tabelle anzeigen ----------
 
 st.subheader("📋 Verlauf der Getränke")
 st.dataframe(st.session_state["data_df"])
