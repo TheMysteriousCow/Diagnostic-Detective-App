@@ -1,8 +1,12 @@
 import streamlit as st
+import os
 import streamlit.components.v1 as components
 import pandas as pd
 from datetime import datetime, date
 from functions.caffeine_math import caffeine_remaining
+
+st.title("☕ Koffeinabbau-Rechner")
+st.image(os.path.join(os.path.dirname(__file__), "titelbild.png"), use_container_width=True)
 
 if "data_df" not in st.session_state:
     st.session_state["data_df"] = pd.DataFrame()
@@ -125,7 +129,6 @@ def drink_rain(drink):
     """, height=0)
 
 
-st.title("☕ Koffeinabbau-Rechner")
 st.caption("Für alle Berechnungen wird eine feste Halbwertszeit von 5 Stunden verwendet.")
 
 with st.form("caffeine_form"):
