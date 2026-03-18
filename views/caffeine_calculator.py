@@ -1,8 +1,8 @@
-import pandas as pd 
+import pandas as pd
 import streamlit as st
-from utils.data_manager import DataManager  # --- NEW CODE: import data manager ---
 import os
 from datetime import datetime, date
+
 from functions.caffeine_math import caffeine_remaining
 
 st.title("☕ Koffeinabbau-Rechner")
@@ -72,7 +72,6 @@ with st.form("caffeine_form"):
 
 
 if submit:
-
     now = datetime.now()
     taken_at = datetime.combine(date.today(), intake_time)
 
@@ -105,8 +104,8 @@ if submit:
             "Koffein (mg)": remaining
         })
 
-    df = pd.DataFrame(data).set_index("Stunden")
-    st.line_chart(df)
+    df_chart = pd.DataFrame(data).set_index("Stunden")
+    st.line_chart(df_chart)
 
     if caffeine_zero_time is not None:
         zero_datetime = taken_at + pd.Timedelta(hours=caffeine_zero_time)
@@ -115,6 +114,7 @@ if submit:
         kein_koffein_text = f"nicht innerhalb von {horizon} Stunden"
 
     new_row = {
+        "timestamp": now,  # WICHTIG: diese Spalte existiert jetzt
         "Getränk": drink,
         "Wann eingenommen": taken_at.strftime("%d.%m.%Y %H:%M"),
         "Koffeinmenge zu Beginn (mg)": round(dose_mg, 1),
@@ -126,9 +126,10 @@ if submit:
         [st.session_state["data_df"], pd.DataFrame([new_row])],
         ignore_index=True
     )
-   # --- CODE UPDATE: save data to data manager ---
-    data_manager = DataManager()
-    data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
-    # --- END OF CODE UPDATE ---
+
+    # denselben DataManager wie in app.py verwenden
+    data_manager = st.session_state["data_manager"]
+    data_manager.save_user_data(st.session_state["data_df"], 'data.csv')
+
 st.subheader("Verlauf der Getränke")
 st.dataframe(st.session_state["data_df"])
