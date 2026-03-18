@@ -114,7 +114,7 @@ if submit:
         kein_koffein_text = f"nicht innerhalb von {horizon} Stunden"
 
     new_row = {
-        "timestamp": now,  # WICHTIG: diese Spalte existiert jetzt
+        "timestamp": now, 
         "Getränk": drink,
         "Wann eingenommen": taken_at.strftime("%d.%m.%Y %H:%M"),
         "Koffeinmenge zu Beginn (mg)": round(dose_mg, 1),
@@ -127,7 +127,6 @@ if submit:
         ignore_index=True
     )
 
-    # denselben DataManager wie in app.py verwenden
     data_manager = st.session_state["data_manager"]
     data_manager.save_user_data(st.session_state["data_df"], 'data.csv')
 
