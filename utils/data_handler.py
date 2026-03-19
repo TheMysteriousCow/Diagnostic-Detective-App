@@ -147,7 +147,7 @@ class DataHandler:
         elif isinstance(content, (dict, list)) and ext == ".json":
             self.write_text(relative_path, json.dumps(content, indent=4))
         elif isinstance(content, (dict, list)) and ext in [".yaml", ".yml"]:
-            self.write_text(relative_path, yaml.dump(content, default_flow_style=False))
+            self.write_text(relative_path, yaml.dump(content, default_flow_style=False,allow_unicode=True))
         elif isinstance(content, str) and ext == ".txt":
             self.write_text(relative_path, content)
         elif isinstance(content, bytes):
