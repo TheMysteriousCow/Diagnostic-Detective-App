@@ -26,7 +26,8 @@ else:
         chart_df = chart_df.dropna(subset=["timestamp", "Koffeinmenge zu Beginn (mg)"])
         chart_df = chart_df.set_index("timestamp")
 
-        last_30_days = chart_df.last("30D")
+        cutoff = pd.Timestamp.now() - pd.Timedelta(days=30)
+        last_30_days = chart_df.loc[chart_df.index >= cutoff]
 
         if not last_30_days.empty:
             st.subheader("Koffeinmenge im letzten Monat")
@@ -40,3 +41,4 @@ if st.button("🗑️ Verlauf löschen"):
     data_manager = st.session_state["data_manager"]
     data_manager.save_user_data(st.session_state["data_df"], "data.csv")
     st.success("Verlauf wurde gelöscht!")
+    
