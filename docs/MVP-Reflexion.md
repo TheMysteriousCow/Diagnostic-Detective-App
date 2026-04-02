@@ -1,8 +1,8 @@
 # MVP-Reflexion
-•Konnte das MVP so umgesetzt werden wie erwünscht?
+Konnte das MVP so umgesetzt werden wie erwünscht?
 
-•	Was konnte nicht umgesetzt werden?
+Was konnte nicht umgesetzt werden?
 
-•	Müssen wir die Roadmap anpassen? Falls ja, wieso?
+Müssen wir die Roadmap anpassen? Falls ja, wieso?
 
-•	Brauchen wir Untersützung?
+Brauchen wir Untersützung?
