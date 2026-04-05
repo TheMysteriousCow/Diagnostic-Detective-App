@@ -1,6 +1,5 @@
 # Produkt-Roadmap
-Wichtig: Mit jedem Schritt fügt ihr EIN neues ELement dazu.--> Lösche, hans dinne glah, als erinnerig
-
+*Wichtig: Mit jedem Schritt fügt ihr EIN neues ELement dazu.--> Lösche, hans dinne glah, als erinnerig*
 Diese Roadmap zeigt die geplanten Entwicklungsschritte für unsere App zur Berechnung und zum bewussten Umgang mit Koffein.
 Die Funktionen wurden nach Priorität und Nutzermehrwert in mehrere aufeinanderfolgende Versionen gegliedert.
 Jede Version ist funktionsfähig und erweiterbar.
@@ -8,36 +7,36 @@ Jede Version ist funktionsfähig und erweiterbar.
 ## Version 1.0 - MVP (Minimal Viable Product)
 Login-System:
 - Benutzername & Passwort
-Mehrere Nutzer:
-- Nutzung durch verschiedene Personen
-Datensicherung:
-- Speicherung der Daten pro Nutzer
-Calculator (Kernfunktion):
+- Mehrere Nutzer: Nutzung durch verschiedene Personen
+- Datensicherung: Speicherung der Daten pro Nutzer
+
+Diese Version bildet die Basis der App und ermöglicht erste Tests.
+
+## Version 2.0 - Erweiterung: Calculator (Kernfunktion)
 - Auswahl eines Getränks (z. B. Kaffee, Energy Drink, Mate)
 - Eingabe der konsumierten Menge (ml)
 - Eingabe des Zeitpunkts der Einnahme
 - Berechnung des aktuellen Koffeinlevels im Körper
 - Berechnung basierend auf der Halbwertszeit von Koffein
+
 Ausgabe:
-○ Anzeige des verbleibenden Koffeins
-○ Erste einfache textliche Rückmeldung
+- Anzeige des verbleibenden Koffeins
+- Erste einfache textliche Rückmeldung
 
-Diese Version bildet die Basis der App und ermöglicht erste Tests.
-
-## Version 2.0 - Erweiterung: Benutzerprofil
+## Version 3.0 - Erweiterung: Benutzerprofil
 Profilseite (Your Profile):
 - Name, Alter, Gewicht
 - Geschlecht
 - Sprache
 Zusätzliche Daten (Additional Data):
 - Medikamenteneinnahme
-- weitere relevante Faktoren (.B Grunderkrankungen, Allergien)
+- weitere relevante Faktoren (z.B Grunderkrankungen, Allergien)
 Personalisierung:
 - genauere Berechnung basierend auf Nutzerdaten
 
 Ziel: individuellere und genauere Ergebnisse.
 
-## Version 3.0 - Erweiterung: Verlauf (History)
+## Version 4.0 - Erweiterung: Verlauf (History)
 Datenspeicherung:
 - Speicherung der eingegebenen Koffeinwerte
 Übersicht:
@@ -48,8 +47,7 @@ Analyse:
 
 Ziel: langfristiges Tracking des Konsums.
 
-
-## Version 4.0 - Erweiterung: Empfehlungen (Recommendations)
+## Version 5.0 - Erweiterung: Empfehlungen (Recommendations)
 Visualisierung des Koffeinverlaufs:
 - Darstellung in Form einer Kurve (z. B. Peak, Abbau, Müdigkeit)
 Empfehlungs-System:
@@ -67,7 +65,7 @@ Detailseiten (z. B. „I can’t fall asleep“):
 
 Ziel: Nutzer versteht seinen Koffeinzustand besser und direkte Hilfe bei Problemen (hoher Nutzermehrwert)
 
-## Version 5.0 - Erweiterung: Alternativen
+## Version 6.0 - Erweiterung: Alternativen
 Alternative Getränke:
 - mit Koffein (z. B. Guarana, Matcha)
 - ohne Koffein (z. B. Kräutertee, Wasser)
