@@ -57,13 +57,13 @@ Anzeige von Zuständen wie:
 - „Peak“
 - „I can't fall asleep“
 - „I feel tired“
+
 Interaktive Auswahl:
 - Nutzer kann auswählen, wie er sich fühlt
 - passende Empfehlungen werden angezeigt
 Detailseiten (z. B. „I can’t fall asleep“):
 - konkrete Tipps zur Verbesserung
 - Hinweise zum Umgang mit zu viel Koffein
-
 
 Ziel: Nutzer versteht seinen Koffeinzustand besser und direkte Hilfe bei Problemen (hoher Nutzermehrwert)
 
