@@ -14,6 +14,12 @@ Gibt es zu viele oder zu wenige Einteilungen?
 
 Wird das Design als ansprechend empfunden?
 
+Wissen Nutzer:innen jederzeit, wo sie sich befinden?
+
+Gehen die Eingaben zu lange für den täglichen Gebrauch?
+
+Ist ein Teil der App überflüssig?
+
 Gibt es technische Hürden (Buttons zu gross oder Schriftgrösse nicht gut lesbar)?
 
 Würden Nutzer:innen die App weiterempfehlen?

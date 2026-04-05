@@ -19,7 +19,7 @@ Wie sind wir damit umgegangen?
 ## Learnings
 Was haben wir gelernt?
 
-Zusammenarbeit
+Zusammenarbeit:
 
 Wie lief unsere Zusammenarbeit?
 
