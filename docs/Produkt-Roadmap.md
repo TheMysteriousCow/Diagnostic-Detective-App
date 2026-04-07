@@ -1,4 +1,4 @@
-# Produkt-Roadmap
+# Produkt-Roadmap <img width="28" height="24" alt="image" src="https://github.com/user-attachments/assets/2c048514-f14a-4e13-87ce-b22b65cd041c" />
 *Wichtig: Mit jedem Schritt fügt ihr EIN neues ELement dazu.--> Lösche, hans dinne glah, als erinnerig*
 Diese Roadmap zeigt die geplanten Entwicklungsschritte für unsere App zur Berechnung und zum bewussten Umgang mit Koffein.
 Die Funktionen wurden nach Priorität und Nutzermehrwert in mehrere aufeinanderfolgende Versionen gegliedert.
