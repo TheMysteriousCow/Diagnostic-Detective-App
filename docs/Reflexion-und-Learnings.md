@@ -1,4 +1,4 @@
-# Reflexion und Learnings
+# Reflexion und Learnings <img width="28" height="24" alt="image" src="https://github.com/user-attachments/assets/2c048514-f14a-4e13-87ce-b22b65cd041c" />
 
 ## Ziel
 ### Was war das Ziel?
