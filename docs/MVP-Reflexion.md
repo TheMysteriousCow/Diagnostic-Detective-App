@@ -1,4 +1,4 @@
-# MVP-Reflexion
+# MVP-Reflexion - Wird zu einem späteren Zeitpunkt (bis 26.04 ausgewertet)
 
 ## Konnte das MVP so umgesetzt werden wie erwünscht?
 
