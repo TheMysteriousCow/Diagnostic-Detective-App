@@ -2,7 +2,7 @@
 
 ## Ziel
 ### Was war das Ziel?
-Unser Ziel war es, eine benutzerfreundliche Koffeinrechner-App zu entwickeln, Die Nutzer:innen hilft, ihren Koffeinkonsum besser zu verstehen und zu kontrollieren. Durch zusätzliche Funktionen wie Tipps, Alternativen, Challenges und die Möglichkeit, Freunde hinzuzufügen, sollte die App motivierend und alltagstauglich gestaltet werden.
+Unser Ziel war es, eine benutzerfreundliche Koffeinrechner-App zu entwickeln, die Nutzer:innen hilft, ihren Koffeinkonsum besser zu verstehen und zu kontrollieren. Durch zusätzliche Funktionen wie Tipps, Alternativen, Challenges und die Möglichkeit, Freunde hinzuzufügen, sollte die App motivierend und alltagstauglich gestaltet werden.
 
 ### Wurde das Ziel erreicht?
 (wird bis zum 26.04 vervollständigt)
