@@ -31,7 +31,7 @@ Eine Gesichtserkennung könnte den Zugang zur App deutlich beschleunigen. Indivi
 ### Neue Probleme?
 Die Gesichtserkennung und das einscannen mit dem Handy sind tolle Ideen aber nicht gut umsetzbar für uns innerhalb dieser kurzer Zeit. Die Idee wäre realistisch, jedoch sehr Zeitaufwendig. 
 
-<img width="546" height="306" alt="image" src="https://github.com/user-attachments/assets/86f6ce93-5c20-4849-a5fb-6495611d01e9" />
+<img width="522" height="287" alt="image" src="https://github.com/user-attachments/assets/a2f4c265-d0bf-4376-ad8e-517bfa490523" />
 
 ## Nutzertest Ylenia P. (24 J.), Studentin der PH FHNW (2. Semester)
 
@@ -47,7 +47,7 @@ Es wird angemerkt, dass bei den Empfehlungen (z. B. „I feel tired“) unklar i
 ### Neue Probleme?
 Eine grössere Auswahl an Alternativen können wir gut umsetzen. Mehrere Getränke zusammen berechnen könnte schwer werden in der Umsetzung. Das Belohnungssystem ist eine sehr gute Idee, welche wir aber auch in so kurzer Zeit nicht umsetzen können.
 
-<img width="591" height="318" alt="image" src="https://github.com/user-attachments/assets/565ffe31-596e-42b8-96c0-490f16520a57" />
+<img width="523" height="286" alt="image" src="https://github.com/user-attachments/assets/67bdebbd-81d3-4d9f-87df-95544989b93c" />
 
 ## Nutzertest Shapena K. (23), Studentin BMLD25 ZHAW (2. Semester)
 
@@ -63,4 +63,4 @@ Alternativen könnten durch ein Farbsystem (Grün = gut, Orange = mittel, Rot = 
 ### Neue Probleme?
 Das mit den Farben ist eine sehr gute Idee und gut umsetzbar für uns.
 
-<img width="571" height="266" alt="image" src="https://github.com/user-attachments/assets/9c9aaa52-5975-4f73-9a31-dcf3309e4801" />
+<img width="522" height="288" alt="image" src="https://github.com/user-attachments/assets/0d742678-6a65-4886-8fdf-f78239d4cb42" />
