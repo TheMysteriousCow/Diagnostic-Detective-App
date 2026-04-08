@@ -14,4 +14,5 @@
 <img width="604" height="277" alt="image" src="https://github.com/user-attachments/assets/bbfceda2-a510-4e6b-afa7-8c878af0187e" />
 
 # Storyboard
-<img width="1503" height="1470" alt="Screenshot 2026-04-08 134116" src="https://github.com/user-attachments/assets/44da4ab2-9249-46c8-a78c-9a8a9f9903f0" />
+<img width="981" height="821" alt="image" src="https://github.com/user-attachments/assets/e2394332-c20c-448c-bf97-b85c51ab1ef6" />
+
