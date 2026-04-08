@@ -3,7 +3,7 @@
 https://diagnostic-detective-app.streamlit.app/
 
 ## Projektbeschrieb
-
+Die CoffeinCalculator-App dient Nutzer:innen
 
 ## Autorinnen
 
