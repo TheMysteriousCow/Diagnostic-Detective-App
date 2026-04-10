@@ -59,6 +59,7 @@ Anzeige von Zuständen wie:
 Interaktive Auswahl:
 - Nutzer können auswählen, wie sie sich fühlen
 - passende Empfehlungen werden angezeigt 
+
 Detailseiten (z. B. „I can’t fall asleep“):
 - konkrete Tipps zur Verbesserung 
 - Hinweise zum Umgang mit zu viel Koffein 
@@ -69,8 +70,10 @@ Ziel: Nutzer verstehen ihren Koffeinzustand besser und erhalten direkte Hilfe be
 Auswahl alternative Getränke:
 - mit Koffein (z. B. Guarana, Matcha)
 - ohne Koffein (z. B. Kräutertee, Wasser) 
+
 Empfehlungen je nach Situation:
 - z. B. bei Müdigkeit oder Schlafproblemen 
+
 Informationsbereich:
 - kurze Beschreibung der Alternativen 
 
