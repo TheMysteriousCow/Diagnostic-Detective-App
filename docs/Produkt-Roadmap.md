@@ -27,6 +27,7 @@ Eingaben:
 - Eingabe der konsumierten Menge (ml) 
 - Eingabe des Zeitpunkts der Einnahme
 - Eingabe des gewünschten Zeitraums für die Berechnung
+
 Berechnung:
 - Berechnung des aktuellen Koffeinlevels im Körper
 - Berechnung des Verlaufs des Koffeinlevels im Körper
