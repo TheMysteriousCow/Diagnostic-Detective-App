@@ -7,7 +7,11 @@ Jede Version ist funktionsfähig und erweiterbar.
 Grundstruktur der App erstellen:
 - Leere, lauffähige App aufsetzen 
 - Navigation mit ersten Seiten vorbereiten, z. B. Home, Calculator
-- App veröffentlichen 
+- App veröffentlichen
+
+Logins:
+- Mehrere Nutzer: Nutzung durch verschiedene Personen 
+- Datensicherung: Speicherung der Daten pro Nutzer
 
 Profilseite (Your Profile):
 - Name, Alter, Gewicht 
@@ -16,10 +20,6 @@ Profilseite (Your Profile):
 Zusätzliche Daten (Additional Data):
 - Medikamenteneinnahme 
 - weitere relevante Faktoren (z. B. Grunderkrankungen, Allergien)
-
-Logins:
-- Mehrere Nutzer: Nutzung durch verschiedene Personen 
-- Datensicherung: Speicherung der Daten pro Nutzer
 
 Diese Version bildet die Basis der App.
 
