@@ -1,11 +1,9 @@
 # MVP-Reflexion - Wird zu einem späteren Zeitpunkt (bis 26.04, Abgabe MVP) vervollständigt
 
-## Konnte das MVP so umgesetzt werden wie erwünscht?
+## Konnte das MVP wie geplant umgesetzt werden?
 
-## Was konnte nicht umgesetzt werden?
+## Muss die Roadmap angepasst werden? Falls ja, warum?
 
-## Müssen wir die Roadmap anpassen? Falls ja, wieso?
+## Benötigen wir Untersützung?
 
-## Brauchen wir Untersützung?
-
-## Was würden wir beim nächsten Mal anders machen?
+## Tipps fürs nächste Mal:
