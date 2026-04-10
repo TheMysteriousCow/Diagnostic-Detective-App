@@ -55,7 +55,7 @@ Eine grössere Auswahl an Alternativen können wir gut umsetzen. Mehrere Geträn
 Das Design ist farblich ansprechend und übersichtlich gestaltet, besonders für eine jüngere Zielgruppe. Die klare Struktur erleichtert die Orientierung innerhalb der App. Zudem ist die Idee mit den Alternativen sehr gelungen, da sie Nutzer:innen hilfreiche Optionen bietet.
 
 ### Was war schlecht?
-Für ältere Nutzer:innen könnte die App teilweise überfordernd wirken. Die vielen Auswahlmöglichkeiten bieten zwar viele Optionen, könnten aber zu Beginn etwas mehr Orierntierung erfordern.
+Für ältere Nutzer:innen könnte die App teilweise überfordernd wirken. Die vielen Auswahlmöglichkeiten bieten zwar viele Optionen, könnten aber zu Beginn etwas mehr Orientierung erfordern. Ausserdem meint die Nutzerin, dass die App für Personen die ihren Koffeinkonsum unter Kontrolle haben nicht wirklich nötig ist.
 
 ### Neue Ideen?
 Alternativen könnten durch ein Farbsystem (Grün = gut, Orange = mittel, Rot = eher schlechter) schnell verständlich gemacht werden. So können Nutzer:innen auf einen Blick erkennen, wie geeignet eine Option ist, ohne lange nachdenken zu müssen.
