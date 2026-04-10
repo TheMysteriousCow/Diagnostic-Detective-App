@@ -31,9 +31,9 @@ Eine Gesichtserkennung könnte den Zugang zur App deutlich beschleunigen. Indivi
 ### Neue Probleme?
 Die Gesichtserkennung und das einscannen mit dem Handy sind tolle Ideen aber nicht gut umsetzbar für uns innerhalb dieser kurzer Zeit. Die Idee wäre realistisch, jedoch sehr Zeitaufwendig.
 
-<img width="641" height="294" alt="image" src="https://github.com/user-attachments/assets/f3ec0db9-5fcf-41ce-99e3-3f9c47704034" />
+<img width="590" height="268" alt="image" src="https://github.com/user-attachments/assets/693ea21d-775c-42b6-8462-2f0311641af2" />
 
-<img width="522" height="287" alt="image" src="https://github.com/user-attachments/assets/a2f4c265-d0bf-4376-ad8e-517bfa490523" />
+<img width="531" height="321" alt="image" src="https://github.com/user-attachments/assets/4df230f0-388f-4705-895d-1fbb0cfba3c2" />
 
 ## Nutzertest Ylenia P. (24 J.), Studentin der PH FHNW (2. Semester)
 
@@ -49,9 +49,9 @@ Es wird angemerkt, dass bei den Empfehlungen (z. B. „I feel tired“) unklar i
 ### Neue Probleme?
 Eine grössere Auswahl an Alternativen können wir gut umsetzen. Mehrere Getränke zusammen berechnen könnte schwer werden in der Umsetzung. Das Belohnungssystem ist eine sehr gute Idee, welche wir aber auch in so kurzer Zeit nicht umsetzen können.
 
-<img width="635" height="297" alt="image" src="https://github.com/user-attachments/assets/0557a2e2-1556-4a04-aa42-f3956dd8c1da" />
+<img width="694" height="320" alt="image" src="https://github.com/user-attachments/assets/555e4f06-9179-4daf-898f-2239b101e793" />
 
-<img width="523" height="286" alt="image" src="https://github.com/user-attachments/assets/67bdebbd-81d3-4d9f-87df-95544989b93c" />
+<img width="513" height="315" alt="image" src="https://github.com/user-attachments/assets/f78e074c-4abd-4215-8e8f-624c6ed54868" />
 
 ## Nutzertest Shapena K. (23), Studentin BMLD25 ZHAW (2. Semester)
 
@@ -67,6 +67,6 @@ Alternativen könnten durch ein Farbsystem (Grün = gut, Orange = mittel, Rot = 
 ### Neue Probleme?
 Das mit den Farben ist eine sehr gute Idee und gut umsetzbar für uns.
 
-<img width="647" height="292" alt="image" src="https://github.com/user-attachments/assets/c2fcd03d-fea1-4d4b-9acd-01bacd0de71c" />
+<img width="698" height="319" alt="image" src="https://github.com/user-attachments/assets/25b2b543-e14b-44a1-9092-710bcb47255a" />
 
-<img width="522" height="288" alt="image" src="https://github.com/user-attachments/assets/0d742678-6a65-4886-8fdf-f78239d4cb42" />
+<img width="501" height="304" alt="image" src="https://github.com/user-attachments/assets/a85f4199-0a30-4196-bf96-d7ee41cf1d41" />
