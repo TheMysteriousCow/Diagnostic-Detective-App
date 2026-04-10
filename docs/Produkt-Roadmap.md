@@ -35,7 +35,7 @@ Berechnung:
 
 Ausgabe:
 - Anzeige des verbleibenden Koffeins 
-- Erste einfache Rückmeldung in Textform
+- Einfache Rückmeldung in Textform
 
 Ziel: Funktionierender Kern der App
 
@@ -43,7 +43,6 @@ Ziel: Funktionierender Kern der App
 Datenspeicherung:
 - Speicherung der eingegebenen Koffeinwerte
 - Darstellung der Werte in Tabellenform und Grafik
-Analyse:
 - Sortierung nach Datum und Zeit (Timestamp) 
 
 Ziel: langfristiges Tracking des Konsums
