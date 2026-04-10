@@ -4,7 +4,7 @@ Mit dem Nutzertest möchten wir prüfen, ob unsere App ohne Erklärung verständ
 
 ## Folgende Fragen stehen dabei im Fokus:
 ### 1. Lässt sich die App ohne Anleitung bedienen?
-Ja. Die Nutzung wird durchgehend als intuitiv, simple und selbsterklärend beschrieben. Nutzer:innen finden sich schnell zurecht, auch ohne Einführung oder Anleitung.
+Ja. Die Nutzung wird durchgehend als intuitiv, einfach und selbsterklärend beschrieben. Nutzer:innen finden sich schnell zurecht, auch ohne Einführung oder Anleitung.
 
 ### 2. Finden Nutzer:innen die wichtigsten Funktionen sofort?
 Ja. Die wichtigsten Funktionen sind leicht auffindbar, vor allem durch die übersichtliche Seitenleiste, die eine klare Navigation ermöglicht.
@@ -37,4 +37,4 @@ Nein. Es wurden keine auffälligen technischen Probleme oder Schwierigkeiten bei
 Ja. Die App wird grundsätzlich weiterempfohlen, allerdings eher für eine bestimmte Zielgruppe (Menschen mit Koffeinkonsum).
 
 ## Fazit Nutzertest:
-Die App überzeugt vor allem durch die einfache, intuitive Bedienung und klare Struktur. Nutzer:innen finden sich schnell zurecht und empfinden sie als hilfreich. Verbesserungspotenzial besteht bei den gewünschten Zusatzfunktionen, welche wir ergänzen werden im Wireframe 3.  
+Die App überzeugt vor allem durch die einfache, intuitive Bedienung und klare Struktur. Nutzer:innen finden sich schnell zurecht und empfinden sie als hilfreich. Verbesserungspotenzial besteht bei den gewünschten Zusatzfunktionen, welche wir im Wireframe 3 ergänzen.  
