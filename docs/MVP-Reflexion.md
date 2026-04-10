@@ -1,4 +1,4 @@
-# MVP-Reflexion (Wird bis 26.04, Abgabe MVP, verfollständigt) 
+# MVP-Reflexion (wird bis zum 26.04, Abgabe MVP, vervollständigt)
 
 ## Konnte das MVP wie geplant umgesetzt werden?
 
