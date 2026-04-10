@@ -89,7 +89,7 @@ Alternativen nach Farben sortieren:
 
 Ziel: schnelle, intuitive Bewertung von Alternativen für bewussteren Konsum
 
-### Version 4.0: Optional Weiterführende Ideen (nicht Teil des aktuellen Zeitrahmens)
+## Version 4.0: Optional - Weiterführende Ideen (nicht Teil des aktuellen Zeitrahmens)
 Diese weiterführenden Ideen zeigen das Potenzial der App und mögliche Ausbaustufen, die im Rahmen dieses Projekts nicht umgesetzt werden, aber zukünftige Weiterentwicklungen ermöglichen.
 
 Verknüpfung mit Fachpersonen:
