@@ -31,6 +31,68 @@ if 'data_df' not in st.session_state:
 
     st.session_state['data_df'] = df
 
+
+# SIDEBAR FARBEN
+st.markdown("""
+<style>
+section[data-testid="stSidebar"] {
+    background-color: #f3f4f6;
+}
+
+/* Alle Navigationseinträge etwas runder machen */
+section[data-testid="stSidebar"] a {
+    border-radius: 10px;
+    padding: 8px 12px !important;
+    margin-bottom: 6px;
+    display: block;
+    color: black !important;
+    text-decoration: none !important;
+}
+
+/* Your Profile – Pastell orange */
+section[data-testid="stSidebar"] a[href*="your_profile"] {
+    background-color: #FFD8B1 !important;
+}
+
+/* Additional Data – Pastell grün */
+section[data-testid="stSidebar"] a[href*="additional_data"] {
+    background-color: #FFE5B4 !important;
+}
+
+/* Home – hellrot */
+section[data-testid="stSidebar"] a[href*="home1"],
+section[data-testid="stSidebar"] a[href*="home.py"] {
+    background-color: #F7C6C7 !important;
+}
+
+/* Koffein Rechner – mitteldunkelrosa */
+section[data-testid="stSidebar"] a[href*="caffeine_calculator"] {
+    background-color: #E7A8C9 !important;
+}
+
+/* Statistik – pastellrosa */
+section[data-testid="stSidebar"] a[href*="statistic"] {
+    background-color: #F8D6E6 !important;
+}
+
+/* Recommendations – pastellgelb */
+section[data-testid="stSidebar"] a[href*="recommendations"] {
+    background-color: #FFF4B8 !important;
+}
+
+/* Alternatives – pastellblau */
+section[data-testid="stSidebar"] a[href*="alternatives"] {
+    background-color: #CFE8FF !important;
+}
+
+/* optional: Hover */
+section[data-testid="stSidebar"] a:hover {
+    opacity: 0.85;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 home = st.Page("views/home.py", title="Home", icon="🏠")
 your_profile = st.Page("views/your_profile.py", title="Your Profile", icon="☕")
 additional_data = st.Page("views/additional_data.py", title="Additional Data", icon="☕")

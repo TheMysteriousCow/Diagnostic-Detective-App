@@ -10,6 +10,7 @@ nach dem Konsum im Körper wirken und beispielsweise den Schlaf beeinflussen.
 Diese App wurde von folgenden Personen entwickelt:
 - Naomi Meisser (meissnao@students.zhaw.ch)
 - Sina Bösiger (boesisin@students.zhaw.ch)
+- Silja Häsler (haeslsil@students.zhaw.ch)
 
 Diese App ist das leere Gerüst für die App-Entwicklung im Modul Informatik 2 (BMLD/ZHAW)
 
