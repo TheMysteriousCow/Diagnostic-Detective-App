@@ -1,25 +1,54 @@
 import pandas as pd
 import streamlit as st
 import os
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from functions.caffeine_math import caffeine_remaining
 
-st.title("☕ Koffeinabbau-Rechner")
-st.image(os.path.join(os.path.dirname(__file__), "titelbild.png"), use_container_width=True)
 
+# -----------------------------
+# PAGE TITLE / IMAGE
+# -----------------------------
+st.title("☕ Koffeinabbau-Rechner")
+st.image(
+    os.path.join(os.path.dirname(__file__), "titelbild.png"),
+    use_container_width=True
+)
+
+
+# -----------------------------
+# SESSION STATE
+# -----------------------------
 if "data_df" not in st.session_state:
     st.session_state["data_df"] = pd.DataFrame()
 
+
+# -----------------------------
+# CONSTANTS
+# -----------------------------
 HALF_LIFE = 5.0
 
 st.caption("Für alle Berechnungen wird eine feste Halbwertszeit von 5 Stunden verwendet.")
 
+
+# -----------------------------
+# INPUT FORM
+# -----------------------------
 with st.form("caffeine_form"):
 
     drink = st.selectbox(
         "Getränk",
-        ["Kaffee", "Espresso", "Energy Drink", "Red Bull", "NOCCO", "Mate", "Matcha", "Schwarzer Tee", "Eigener Wert"]
+        [
+            "Kaffee",
+            "Espresso",
+            "Energy Drink",
+            "Red Bull",
+            "NOCCO",
+            "Mate",
+            "Matcha",
+            "Schwarzer Tee",
+            "Eigener Wert"
+        ]
     )
 
     default_values = {
@@ -71,14 +100,20 @@ with st.form("caffeine_form"):
     submit = st.form_submit_button("Ausrechnen")
 
 
+# -----------------------------
+# CALCULATION
+# -----------------------------
 if submit:
     now = datetime.now()
     taken_at = datetime.combine(date.today(), intake_time)
 
-    hours_since = (now - taken_at).total_seconds() / 3600
+    # Falls die eingegebene Zeit in der Zukunft liegt,
+    # nehmen wir an, das Getränk wurde gestern getrunken.
+    if taken_at > now:
+        taken_at = taken_at - timedelta(days=1)
 
-    if hours_since < 0:
-        hours_since = 0
+    hours_since = (now - taken_at).total_seconds() / 3600
+    hours_since = max(0.0, hours_since)
 
     current = caffeine_remaining(dose_mg, hours_since, HALF_LIFE)
     remaining_after_24h = caffeine_remaining(dose_mg, 24, HALF_LIFE)
@@ -90,15 +125,21 @@ if submit:
             caffeine_zero_time = h
             break
 
+    # -----------------------------
+    # METRICS / INFO
+    # -----------------------------
     st.metric("Koffein aktuell im Körper (mg)", f"{current:.1f}")
     st.metric(f"Koffein nach {horizon} Stunde(n)", f"{remaining_after_horizon:.1f} mg")
     st.info(f"Verwendete Halbwertszeit: {HALF_LIFE:.1f} Stunden")
 
-    if caffeine_zero_time:
+    if caffeine_zero_time is not None:
         st.success(f"✅ Koffein ist nach ca. {caffeine_zero_time} Stunde(n) aus dem Körper")
     else:
         st.warning(f"Innerhalb von {horizon} Stunden ist noch Restkoffein vorhanden")
 
+    # -----------------------------
+    # CHART DATA
+    # -----------------------------
     data = []
     for h in range(horizon + 1):
         remaining = caffeine_remaining(dose_mg, h, HALF_LIFE)
@@ -113,10 +154,18 @@ if submit:
     st.subheader("Koffeinverlauf pro Stunde")
     st.dataframe(pd.DataFrame(data), use_container_width=True)
 
+    # -----------------------------
+    # SAVE RESULT IN SESSION STATE
+    # -----------------------------
     new_row = {
         "timestamp": now,
+        "Einnahmezeitpunkt": taken_at,
         "Getränk": drink,
+        "Menge (ml)": round(volume_ml, 1),
+        "Koffein pro ml (mg/ml)": round(caffeine_per_ml, 2),
+        "Berechnungszeitraum (h)": horizon,
         "Koffeinmenge zu Beginn (mg)": round(dose_mg, 1),
+        "Aktuell im Körper (mg)": round(current, 1),
         "Koffeinmenge nach 24 h (mg)": round(remaining_after_24h, 1),
         f"Koffeinmenge nach {horizon} h (mg)": round(remaining_after_horizon, 1)
     }
@@ -131,5 +180,14 @@ if submit:
         cols = ["timestamp"] + [col for col in cols if col != "timestamp"]
         st.session_state["data_df"] = st.session_state["data_df"][cols]
 
-    data_manager = st.session_state["data_manager"]
-    data_manager.save_user_data(st.session_state["data_df"], "data.csv")
+    # -----------------------------
+    # OPTIONAL SAVE TO DATA MANAGER
+    # -----------------------------
+    if "data_manager" in st.session_state:
+        try:
+            data_manager = st.session_state["data_manager"]
+            data_manager.save_user_data(st.session_state["data_df"], "data.csv")
+        except Exception as e:
+            st.warning(f"Speichern über data_manager nicht möglich: {e}")
+    else:
+        st.info("Die Daten wurden nur für diese Session gespeichert.")
