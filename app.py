@@ -49,35 +49,35 @@ section[data-testid="stSidebar"] a {
     text-decoration: none !important;
 }
 
-/* Your Profile – Pastell orange */
+/* Your Profile – pastellgelb */
 section[data-testid="stSidebar"] a[href*="your_profile"] {
+    background-color: #FFF4B8 !important;
+}
+
+/* Additional Data – pastellorange */
+section[data-testid="stSidebar"] a[href*="additional_data"] {
     background-color: #FFD8B1 !important;
 }
 
-/* Additional Data – orange */
-section[data-testid="stSidebar"] a[href*="additional_data"] {
+/* Home – orange */
+section[data-testid="stSidebar"] a[href*="home1"],
+section[data-testid="stSidebar"] a[href*="home.py"] {
     background-color: #FFE5B4 !important;
 }
 
-/* Home – hellrot */
-section[data-testid="stSidebar"] a[href*="home1"],
-section[data-testid="stSidebar"] a[href*="home.py"] {
+/* Koffein Rechner – hellrot */
+section[data-testid="stSidebar"] a[href*="caffeine_calculator"] {
     background-color: #F7C6C7 !important;
 }
 
-/* Koffein Rechner – mitteldunkelrosa */
-section[data-testid="stSidebar"] a[href*="caffeine_calculator"] {
+/* Statistik – mitteldunkelrosa */
+section[data-testid="stSidebar"] a[href*="statistic"] {
     background-color: #E7A8C9 !important;
 }
 
-/* Statistik – pastellrosa */
-section[data-testid="stSidebar"] a[href*="statistic"] {
-    background-color: #F8D6E6 !important;
-}
-
-/* Recommendations – pastellgelb */
+/* Recommendations – pastellrosa */
 section[data-testid="stSidebar"] a[href*="recommendations"] {
-    background-color: #FFF4B8 !important;
+    background-color: #F8D6E6 !important;
 }
 
 /* Alternatives – pastellblau */
@@ -98,15 +98,15 @@ section[data-testid="stSidebar"] a:hover {
 """, unsafe_allow_html=True)
 
 
-home = st.Page("views/home.py", title="Home", icon="🏠")
-your_profile = st.Page("views/your_profile.py", title="Your Profile", icon="☕")
-additional_data = st.Page("views/additional_data.py", title="Additional Data", icon="☕")
-home1 = st.Page("views/home1.py", title="Home", icon="☕")
-calculator = st.Page("views/caffeine_calculator.py", title="Caffeine Calculator", icon="☕")
-statistics = st.Page("views/statistic.py", title="History", icon="☕")
-recommendations = st.Page("views/recommendations.py", title="Recommendations", icon="☕")
-alternatives = st.Page("views/alternatives.py", title="Alternatives", icon="☕")
-professional_help = st.Page("views/professional_help.py", title="Professional Help", icon="☕")
+home = st.Page("views/home.py", title="Home")
+your_profile = st.Page("views/your_profile.py", title="Your Profile")
+additional_data = st.Page("views/additional_data.py", title="Additional Data")
+home1 = st.Page("views/home1.py", title="Home")
+calculator = st.Page("views/caffeine_calculator.py", title="Caffeine Calculator")
+statistics = st.Page("views/statistic.py", title="History")
+recommendations = st.Page("views/recommendations.py", title="Recommendations")
+alternatives = st.Page("views/alternatives.py", title="Alternatives")
+professional_help = st.Page("views/professional_help.py", title="Professional Help")
 
 pg = st.navigation([home, your_profile, additional_data, home1, calculator, statistics, recommendations, alternatives, professional_help])
 pg.run()

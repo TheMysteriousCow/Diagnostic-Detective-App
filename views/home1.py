@@ -20,7 +20,7 @@ st.markdown("""
     font-size: 3.4rem;
     font-family: 'Georgia', 'Times New Roman', serif;
     font-weight: 600;
-    color: #6b4a2d;
+    color: #5C4033;
     margin-bottom: 0.3rem;
     letter-spacing: 1px;
 }
@@ -30,7 +30,7 @@ st.markdown("""
     text-align: center;
     font-size: 1.1rem;
     font-style: italic;
-    color: #8b6a4f;
+    color: #5C4033;
     margin-bottom: 2.5rem;
     font-family: 'Georgia', 'Times New Roman', serif;
 }
@@ -42,8 +42,8 @@ div[data-testid="stButton"] > button {
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 0px;
-    border: 4px solid #6b4a2d;
-    color: #6b4a2d;
+    border: 4px solid #5C4033;
+    color: #5C4033;
     box-shadow: none;
     transition: 0.15s;
 }
@@ -83,7 +83,7 @@ section.main div[data-testid="column"]:nth-of-type(2) div[data-testid="stButton"
 }
 section.main div[data-testid="column"]:nth-of-type(2) div[data-testid="stButton"]:nth-of-type(8) > button {
     background-color: #4db3ff !important;
-    color: #6b4a2d !important;
+    color: #5C4033 !important;
 }
 
 </style>
