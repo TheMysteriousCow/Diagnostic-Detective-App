@@ -1,7 +1,42 @@
 import pandas as pd
 import streamlit as st
 
-st.title("☕ Statistik")
+# -------------------------------------------------
+# CSS (einheitliche Farbe + Titelstil)
+# -------------------------------------------------
+st.markdown("""
+<style>
+
+/* Hintergrund */
+.stApp {
+    background-color: white;
+}
+
+/* Einheitliche Schriftfarbe */
+h1, h2, h3, h4, h5, h6, p, label, span {
+    color: #5C4033 !important;
+}
+
+/* TITEL wie auf Hauptscreen */
+.main-title {
+    text-align: center;
+    font-size: 3.4rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    color: #5C4033;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# Titel (ersetzt st.title)
+st.markdown("<div class='main-title'>History</div>", unsafe_allow_html=True)
+
+# -------------------------------------------------
+# REST BLEIBT UNVERÄNDERT
+# -------------------------------------------------
 
 if "data_df" not in st.session_state:
     st.session_state["data_df"] = pd.DataFrame()

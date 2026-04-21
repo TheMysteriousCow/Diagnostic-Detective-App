@@ -6,10 +6,56 @@ from datetime import datetime, date, timedelta
 from functions.caffeine_math import caffeine_remaining
 
 
+# -------------------------------------------------
+# CSS (einheitliche Farbe + Titelstil)
+# -------------------------------------------------
+st.markdown("""
+<style>
+
+/* Hintergrund */
+.stApp {
+    background-color: white;
+}
+
+/* Allgemeine Schriftfarbe */
+h1, h2, h3, h4, h5, h6, p, label, span {
+    color: #5C4033 !important;
+}
+
+/* TITEL wie auf Hauptscreen */
+.main-title {
+    text-align: center;
+    font-size: 3.4rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    color: #5C4033;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+div[data-testid="stButton"] > button,
+div[data-testid="stFormSubmitButton"] > button {
+    border: 2px solid #5C4033 !important;
+    color: #5C4033 !important;
+}
+
+/* Input-Beschriftungen */
+.stSelectbox label,
+.stNumberInput label,
+.stTimeInput label,
+.stSlider label {
+    color: #5C4033 !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
 # -----------------------------
 # PAGE TITLE / IMAGE
 # -----------------------------
-st.title("☕ Koffeinabbau-Rechner")
+st.markdown("<div class='main-title'>Koffeinabbau-Rechner</div>", unsafe_allow_html=True)
 st.image(
     os.path.join(os.path.dirname(__file__), "titelbild.png"),
     use_container_width=True

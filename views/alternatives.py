@@ -63,7 +63,7 @@ A common amount is about 1–5 cups per day (200–1000 ml) depending on the tea
 """,
     "Kokoa": """
 Kokoa is a mild alternative to classic caffeine sources.  
-It does not mainly act through caffeine, but contains compounds such as **theobromine**, which can have a gentle stimulating effect.  
+It does not mainly act through caffeine, but contains compounds such as theobromine, which can have a gentle stimulating effect.  
 Kokoa may also support mood and contains antioxidants.  
 It is often enjoyed as a warm drink.  
 A common recommendation is about 1–2 cups per day (200–400 ml), ideally with little sugar.
@@ -74,28 +74,40 @@ A common recommendation is about 1–2 cups per day (200–400 ml), ideally with
 if "selected_alternative" not in st.session_state:
     st.session_state.selected_alternative = None
 
+
 # --- WITH CAFFEINE ---
-st.markdown("<h3 style='color:black;'>With Caffeine</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='color:#5C4033;'>With Caffeine</h3>", unsafe_allow_html=True)
 
-if st.button("Guarana"):
-    st.session_state.selected_alternative = "Guarana"
+left, col1, col2, right = st.columns([1,1,1,1])
 
-if st.button("Green tea"):
-    st.session_state.selected_alternative = "Green tea"
+with col1:
+    if st.button("Guarana"):
+        st.session_state.selected_alternative = "Guarana"
+
+with col2:
+    if st.button("Green tea"):
+        st.session_state.selected_alternative = "Green tea"
 
 st.write("")
 
+
 # --- WITHOUT CAFFEINE ---
-st.markdown("<h3 style='color:black;'>Without Caffeine</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='color:#5C4033;'>Without Caffeine</h3>", unsafe_allow_html=True)
 
-if st.button("Ginger"):
-    st.session_state.selected_alternative = "Ginger"
+left, col3, col4, col5, right = st.columns([0.5,1,1,1,0.5])
 
-if st.button("Herbal tea"):
-    st.session_state.selected_alternative = "Herbal tea"
+with col3:
+    if st.button("Ginger"):
+        st.session_state.selected_alternative = "Ginger"
 
-if st.button("Kokoa"):
-    st.session_state.selected_alternative = "Kokoa"
+with col4:
+    if st.button("Herbal tea"):
+        st.session_state.selected_alternative = "Herbal tea"
+
+with col5:
+    if st.button("Kokoa"):
+        st.session_state.selected_alternative = "Kokoa"
+
 
 # Infobox unten anzeigen
 if st.session_state.selected_alternative:
