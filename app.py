@@ -87,7 +87,7 @@ section[data-testid="stSidebar"] a[href*="alternatives"] {
             
 /* Professional Help – mitteldunkles blau */
 section[data-testid="stSidebar"] a[href*="professional_help"] {
-    background-color: #5B8DB8 !important;
+    background-color: #6FA3CC !important;
 }
 
 /* optional: Hover */
@@ -97,15 +97,14 @@ section[data-testid="stSidebar"] a:hover {
 </style>
 """, unsafe_allow_html=True)
 
-
-home1 = st.Page("views/home1.py", title="Home")
-your_profile = st.Page("views/your_profile.py", title="Your Profile")
-additional_data = st.Page("views/additional_data.py", title="Additional Data")
-calculator = st.Page("views/caffeine_calculator.py", title="Caffeine Calculator")
-statistics = st.Page("views/statistic.py", title="History")
-recommendations = st.Page("views/recommendations.py", title="Recommendations")
-alternatives = st.Page("views/alternatives.py", title="Alternatives")
-professional_help = st.Page("views/professional_help.py", title="Professional Help")
+home1 = st.Page("views/home1.py", title="Home", url_path="home")
+your_profile = st.Page("views/your_profile.py", title="Your Profile", url_path="your_profile")
+additional_data = st.Page("views/additional_data.py", title="Additional Data", url_path="additional_data")
+calculator = st.Page("views/caffeine_calculator.py", title="Caffeine Calculator", url_path="caffeine_calculator")
+statistics = st.Page("views/statistic.py", title="History", url_path="statistic")
+recommendations = st.Page("views/recommendations.py", title="Recommendations", url_path="recommendations")
+alternatives = st.Page("views/alternatives.py", title="Alternatives", url_path="alternatives")
+professional_help = st.Page("views/professional_help.py", title="Professional Help", url_path="professional_help")
 
 pg = st.navigation([home1, your_profile, additional_data, calculator, statistics, recommendations, alternatives, professional_help])
 pg.run()
