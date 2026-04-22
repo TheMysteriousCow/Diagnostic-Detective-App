@@ -148,7 +148,7 @@ def set_background(image_file):
 
 # Pfad dynamisch ermitteln (relativ zu DIESER Python-Datei)
 script_dir = os.path.dirname(os.path.abspath(__file__))
-image_path = os.path.join(script_dir, "images", "Logo Infapp.png")
+image_path = os.path.join(script_dir, "..", "images", "Logo Infapp.png")
 
 # Funktion aufrufen
 set_background(image_path)
