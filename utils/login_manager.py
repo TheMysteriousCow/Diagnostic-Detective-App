@@ -122,8 +122,14 @@ class LoginManager:
 
 import base64
 import streamlit as st
+import os
 
 def set_background(image_file):
+    # Sicherheitsprüfung: Existiert die Datei wirklich?
+    if not os.path.exists(image_file):
+        st.error(f"FEHLER: Datei nicht gefunden unter: {image_file}")
+        st.stop()  # Stoppt das Skript, damit du den Fehler siehst
+
     with open(image_file, "rb") as f:
         encoded = base64.b64encode(f.read()).decode()
 
@@ -131,7 +137,7 @@ def set_background(image_file):
     <style>
     .stApp {{
         background-image: url("data:image/png;base64,{encoded}");
-        background-size: 400px;  /* Größe anpassen */
+        background-size: 400px;
         background-repeat: no-repeat;
         background-position: center;
         background-attachment: fixed;
@@ -139,5 +145,10 @@ def set_background(image_file):
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
-set_background("images/Logo Infapp.png")
 
+# Pfad dynamisch ermitteln (relativ zu DIESER Python-Datei)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+image_path = os.path.join(script_dir, "images", "Logo Infapp.png")
+
+# Funktion aufrufen
+set_background(image_path)
