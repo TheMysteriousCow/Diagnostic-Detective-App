@@ -168,7 +168,7 @@ with col1:
                 emotional wellbeing, inner balance and personal growth.
             </div>
             <div class="card-text">
-                Valerie presents herself is a therapist and mentor. Her work includes
+                Valerie presents herself as a therapist and mentor. Her work includes
                 body-based and holistic approaches, and she works in naturopathy and energy-based support. The offer has a visible focus on women,
                 but can still be inspiring for anyone looking for gentle, more holistic guidance.
             </div>
