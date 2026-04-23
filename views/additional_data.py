@@ -18,8 +18,8 @@ def set_logo_top_right(image_file: str):
     <style>
     .logo-container {{
         position: absolute;
-        top: 12px;
-        right: 10px;
+        top: 7px;
+        right: -23px;
         z-index: 100;
     }}
 
