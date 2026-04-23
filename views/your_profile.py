@@ -17,7 +17,7 @@ def set_logo_top_right(image_file: str):
     css = f"""
     <style>
     .logo-container {{
-        position: fixed;
+        position: absolute;
         top: 60px;   /* gleiche Position wie Login */
         right: 30px;
         z-index: 100;
