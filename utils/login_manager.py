@@ -20,9 +20,9 @@ def set_logo_top_right(image_file: str):
     css = f"""
     <style>
     .logo-container {{
-        position: fixed;
-        top: 60px;   /* 👈 bewusst tiefer gesetzt */
-        right: 30px;
+        position: absolute;
+        top: 15px;   /* 👈 bewusst tiefer gesetzt */
+        right: 20px;
         z-index: 100;
     }}
     .logo-img {{
