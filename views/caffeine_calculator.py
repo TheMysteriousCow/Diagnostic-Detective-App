@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import os
 import time
 import streamlit.components.v1 as components
@@ -130,6 +131,13 @@ if "selected_volume_ml" not in st.session_state:
 if "drink_start_time" not in st.session_state:
     st.session_state.drink_start_time = None
 
+if "data_df" not in st.session_state:
+    st.session_state["data_df"] = pd.DataFrame(columns=[
+        "timestamp",
+        "Drink",
+        "Caffeine (mg)"
+    ])
+
 # -----------------------------
 # CHOOSE DRINK
 # -----------------------------
@@ -155,6 +163,21 @@ with center:
                 st.session_state.selected_caffeine_mg = info["caffeine_mg"]
                 st.session_state.selected_volume_ml = info["volume_ml"]
                 st.session_state.drink_start_time = int(time.time())
+
+                new_entry = pd.DataFrame([{
+                    "timestamp": pd.Timestamp.now(),
+                    "Drink": drink_name,
+                    "Caffeine (mg)": info["caffeine_mg"]
+                }])
+
+                st.session_state["data_df"] = pd.concat(
+                    [st.session_state["data_df"], new_entry],
+                    ignore_index=True
+                )
+
+                if "data_manager" in st.session_state:
+                    data_manager = st.session_state["data_manager"]
+                    data_manager.save_user_data(st.session_state["data_df"], "data.csv")
 
 # -----------------------------
 # RESULT + COUNTDOWN
