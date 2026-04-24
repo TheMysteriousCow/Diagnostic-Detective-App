@@ -15,15 +15,16 @@ def set_logo_top_right(image_file: str):
     css = f"""
     <style>
     .logo-container {{
-        position: absolute;
-        top: -40px;
-        right: -20px;
-        z-index: 100;
+        position: fixed;
+        top: 70px;
+        right: 25px;
+        z-index: 9999;
     }}
 
     .logo-img {{
         width: 140px;
         height: auto;
+        display: block;
     }}
     </style>
 
@@ -40,6 +41,8 @@ def set_logo_top_right(image_file: str):
 # =========================
 image_path = os.path.join(os.getcwd(), "images", "logo.png")
 set_logo_top_right(image_path)
+
+
 # -----------------------------
 # PAGE STYLE
 # -----------------------------
@@ -55,7 +58,6 @@ st.markdown(
             padding-bottom: 3rem;
         }
 
-        /* ✅ Titel angepasst wie bei anderen Seiten */
         .help-title {
             text-align: center;
             font-size: 3.4rem;
