@@ -10,13 +10,11 @@ import matplotlib.patches as patches
 st.markdown("""
 <style>
 
-/* Gesamt Schrift */
 html, body, [class*="css"] {
     font-family: 'Georgia', 'Times New Roman', serif;
     color: #5a3e36;
 }
 
-/* Titel wie auf allen Seiten */
 .main-title {
     text-align: center;
     font-size: 3.4rem;
@@ -27,7 +25,6 @@ html, body, [class*="css"] {
     letter-spacing: 1px;
 }
 
-/* Untertitel (normale Schrift) */
 .subtitle {
     text-align: center;
     font-size: 1.1rem;
@@ -36,18 +33,15 @@ html, body, [class*="css"] {
     margin-bottom: 2rem;
 }
 
-/* Untertitel */
 h2, h3 {
     font-family: 'Georgia', serif;
     color: #5a3e36 !important;
 }
 
-/* Texte */
 p, span, label {
     color: #5a3e36 !important;
 }
 
-/* Metrics */
 [data-testid="stMetricLabel"] {
     color: #5a3e36 !important;
     font-family: 'Georgia', serif;
@@ -58,14 +52,12 @@ p, span, label {
     font-family: 'Georgia', serif;
 }
 
-/* Buttons */
 .stButton > button {
     font-family: 'Georgia', serif;
     color: #5a3e36;
     border-radius: 10px;
 }
 
-/* Expander */
 .streamlit-expanderHeader {
     font-family: 'Georgia', serif;
     color: #5a3e36 !important;
@@ -282,6 +274,34 @@ if selected_detail == "Peak":
     )
     st.stop()
 
+elif selected_detail == "Increase":
+    show_detail_page(
+        title="Increase",
+        intro="Your caffeine effect is currently building up. You may start to feel more awake, focused or physically activated.",
+        tips=[
+            "Use this phase for light productivity or planned focus tasks.",
+            "Do not take more caffeine too quickly, because the full effect may still be coming.",
+            "Drink water alongside caffeine.",
+            "Notice whether your body feels calm, energized or already overstimulated."
+        ],
+        warning="Taking more caffeine during the increase phase can make the later peak stronger than expected."
+    )
+    st.stop()
+
+elif selected_detail == "Crash":
+    show_detail_page(
+        title="Crash",
+        intro="The caffeine effect is going down. Some people feel tired, unfocused, low in energy or slightly irritable during this phase.",
+        tips=[
+            "Drink water first and give your body a short pause.",
+            "Eat something balanced instead of immediately reaching for more caffeine.",
+            "Go outside or move gently for a few minutes.",
+            "Avoid a second large caffeine dose if it is already late in the day."
+        ],
+        warning="Using caffeine repeatedly to escape a crash can create a cycle of stimulation followed by stronger tiredness later."
+    )
+    st.stop()
+
 elif selected_detail == "I can't fall asleep":
     show_detail_page(
         title="I can't fall asleep",
@@ -349,6 +369,51 @@ elif selected_detail == "Recovery":
             "Avoid taking caffeine automatically just because the effect is fading."
         ],
         warning="If you often rely on caffeine again during recovery, it can become a repeating cycle."
+    )
+    st.stop()
+
+elif selected_detail == "Stomach discomfort or acidity":
+    show_detail_page(
+        title="Stomach discomfort or acidity",
+        intro="Caffeine can irritate the stomach in some people and may feel worse if you drink it on an empty stomach or combine it with stress.",
+        tips=[
+            "Avoid more caffeine for now, especially coffee or energy drinks.",
+            "Drink water slowly.",
+            "Eat something mild, for example bread, rice, banana or oatmeal.",
+            "Avoid very spicy, acidic or fatty foods for the moment.",
+            "Notice whether certain caffeine sources cause more discomfort than others."
+        ],
+        warning="If stomach pain is strong, keeps coming back, or is combined with vomiting, blood, chest pain or severe burning, seek medical advice."
+    )
+    st.stop()
+
+elif selected_detail == "I have a headache":
+    show_detail_page(
+        title="I have a headache",
+        intro="Headaches can have many causes. With caffeine, they may be linked to dehydration, too much caffeine, caffeine withdrawal, stress or lack of sleep.",
+        tips=[
+            "Drink water slowly and rest your eyes for a few minutes.",
+            "Eat something if you have not eaten enough.",
+            "Avoid taking more caffeine immediately unless you know caffeine withdrawal is likely.",
+            "Move gently or get fresh air if it feels helpful.",
+            "Track whether headaches happen after high caffeine intake or when you skip caffeine."
+        ],
+        warning="Seek medical help if the headache is sudden and severe, unusual for you, follows an injury, or comes with fever, confusion, weakness, vision problems or chest pain."
+    )
+    st.stop()
+
+elif selected_detail == "I am training soon or doing sports":
+    show_detail_page(
+        title="I am training soon or doing sports",
+        intro="Caffeine can support alertness and performance for some people, but too much can also increase nervousness, stomach discomfort or a racing heartbeat during exercise.",
+        tips=[
+            "Avoid taking extra caffeine if you already feel shaky, anxious or overstimulated.",
+            "Drink water before and during training.",
+            "Do not train on a very full stomach or after a large caffeine dose if your stomach feels sensitive.",
+            "For intense training, keep caffeine moderate and avoid experimenting with high doses.",
+            "After training, focus on hydration, food and recovery instead of automatically taking more caffeine."
+        ],
+        warning="Stop exercising and seek help if you feel chest pain, faintness, severe shortness of breath, irregular heartbeat or unusual strong symptoms."
     )
     st.stop()
 
@@ -437,8 +502,16 @@ st.markdown("### Choose how you feel")
 col_a, col_b = st.columns(2)
 
 with col_a:
+    if st.button("Increase", use_container_width=True):
+        st.session_state["recommendation_detail"] = "Increase"
+        st.rerun()
+
     if st.button("Peak", use_container_width=True):
         st.session_state["recommendation_detail"] = "Peak"
+        st.rerun()
+
+    if st.button("Crash", use_container_width=True):
+        st.session_state["recommendation_detail"] = "Crash"
         st.rerun()
 
     if st.button("I feel tired", use_container_width=True):
@@ -449,6 +522,10 @@ with col_a:
         st.session_state["recommendation_detail"] = "I feel anxious"
         st.rerun()
 
+    if st.button("Stomach discomfort or acidity", use_container_width=True):
+        st.session_state["recommendation_detail"] = "Stomach discomfort or acidity"
+        st.rerun()
+
 with col_b:
     if st.button("I can't fall asleep", use_container_width=True):
         st.session_state["recommendation_detail"] = "I can't fall asleep"
@@ -456,6 +533,14 @@ with col_b:
 
     if st.button("I can't concentrate", use_container_width=True):
         st.session_state["recommendation_detail"] = "I can't concentrate"
+        st.rerun()
+
+    if st.button("I have a headache", use_container_width=True):
+        st.session_state["recommendation_detail"] = "I have a headache"
+        st.rerun()
+
+    if st.button("I am training soon or doing sports", use_container_width=True):
+        st.session_state["recommendation_detail"] = "I am training soon or doing sports"
         st.rerun()
 
     if st.button("Recovery", use_container_width=True):
