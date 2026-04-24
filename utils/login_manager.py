@@ -1,8 +1,6 @@
 import secrets
 import streamlit as st
 import streamlit_authenticator as stauth
-import base64
-import os
 from utils.data_manager import DataManager
 
 # =========================
@@ -16,7 +14,6 @@ class LoginManager:
         instance = super(LoginManager, cls).__new__(cls)
         st.session_state.login_manager = instance
         return instance
-
     def __init__(
         self,
         data_manager: DataManager = None,
@@ -70,19 +67,13 @@ class LoginManager:
     # Login/Register Seite
     # =========================
     def _login_register_page(self, login_title, register_title):
-        # 👉 robuster Pfad (funktioniert lokal + cloud)
-        image_path = os.path.join(os.getcwd(), "images", "logo.png")
-
-        # 👉 Logo hier platzieren (richtiger Ort!)
-        set_logo_top_right(image_path)
-
         login_tab, register_tab = st.tabs((login_title, register_title))
 
         with login_tab:
-            self._login()
+        self._login()
 
         with register_tab:
-            self._register()
+        self._register()
 
     # =========================
     # Login

@@ -18,12 +18,12 @@ def set_logo_top_right(image_file: str):
     <style>
     .logo-container {{
         position: absolute;
-        top: 15px;   /* gleiche Position wie Login */
-        right: 20px;
+        top: -45px;   /* gleiche Position wie Login */
+        right: 0px;
         z-index: 100;
     }}
     .logo-img {{
-        width: 170px;   /* 👈 deine gewünschte Größe */
+        width: 140px;   /* 👈 deine gewünschte Größe */
         height: auto;
     }}
     </style>
