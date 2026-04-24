@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -225,6 +225,134 @@ def plot_colored_segments(ax, x, y):
         ax.plot(x[mask], y[mask], color=color, linewidth=3, zorder=5)
 
 # -----------------------------
+# DETAIL PAGE
+# -----------------------------
+def show_detail_page(title: str, intro: str, tips: list[str], warning: str):
+    st.subheader(title)
+    st.write(intro)
+
+    st.markdown("### What can help?")
+    for tip in tips:
+        st.write(f"• {tip}")
+
+    st.markdown("### Important")
+    st.warning(warning)
+
+    if st.button("Back"):
+        st.session_state["recommendation_detail"] = None
+        st.rerun()
+
+# -----------------------------
+# HELP SECTION
+# -----------------------------
+def show_phase_help():
+    st.markdown("### Help: What do the phases mean?")
+
+    with st.expander("Start"):
+        st.write("Caffeine has just entered your body. You usually do not feel the full effect yet.")
+
+    with st.expander("Increase"):
+        st.write("The caffeine effect is getting stronger. You may start to feel more awake, focused or active.")
+
+    with st.expander("Peak"):
+        st.write("This is the strongest phase. The caffeine effect is highest now.")
+
+    with st.expander("Crash"):
+        st.write("The caffeine effect starts to go down again. Some people feel more tired, unfocused or low in energy here.")
+
+    with st.expander("Recovery"):
+        st.write("Your body is slowly calming down again. The caffeine level is lower and the effect becomes weaker.")
+
+# -----------------------------
+# DETAIL ROUTING
+# -----------------------------
+selected_detail = st.session_state["recommendation_detail"]
+
+if selected_detail == "Peak":
+    show_detail_page(
+        title="Peak",
+        intro="Your caffeine effect is currently high. This is the phase in which alertness and stimulation are strongest.",
+        tips=[
+            "Avoid additional caffeine right now.",
+            "Drink water to stay hydrated.",
+            "Use this phase for focused work, but do not overdo it.",
+            "If you feel shaky, take a short break and eat something light."
+        ],
+        warning="Too much caffeine during the peak phase can increase nervousness, inner restlessness and heartbeat."
+    )
+    st.stop()
+
+elif selected_detail == "I can't fall asleep":
+    show_detail_page(
+        title="I can't fall asleep",
+        intro="There may still be too much caffeine in your body, especially if you consumed it late in the day.",
+        tips=[
+            "Do not take more caffeine today.",
+            "Avoid screens and bright light before sleep.",
+            "Drink water, but not too much right before bed.",
+            "Try a calm environment and slow breathing."
+        ],
+        warning="If sleep problems happen often, reduce caffeine in the afternoon and evening."
+    )
+    st.stop()
+
+elif selected_detail == "I feel tired":
+    show_detail_page(
+        title="I feel tired",
+        intro="Your caffeine effect may already be dropping. This can happen after the stimulating phase wears off.",
+        tips=[
+            "Drink water first.",
+            "Eat a balanced snack.",
+            "Get fresh air or move for a few minutes.",
+            "Avoid automatically taking more caffeine immediately."
+        ],
+        warning="Repeated caffeine use against tiredness can lead to a cycle of short-term stimulation and later tiredness."
+    )
+    st.stop()
+
+elif selected_detail == "I feel anxious":
+    show_detail_page(
+        title="I feel anxious",
+        intro="High caffeine levels can increase nervousness, restlessness or tension.",
+        tips=[
+            "Stop caffeine for the rest of the day.",
+            "Drink water slowly.",
+            "Sit down and breathe slowly and deeply.",
+            "Reduce other stimulants if possible."
+        ],
+        warning="If symptoms are strong or unusual, professional medical advice may be necessary."
+    )
+    st.stop()
+
+elif selected_detail == "I can't concentrate":
+    show_detail_page(
+        title="I can't concentrate",
+        intro="Too little or too much caffeine can both affect concentration.",
+        tips=[
+            "Check whether you are in a crash phase or overstimulated.",
+            "Drink water and take a short movement break.",
+            "Work in short blocks instead of forcing long focus periods.",
+            "Avoid taking more caffeine too quickly."
+        ],
+        warning="Poor concentration is not always caused by caffeine. Sleep, stress and food intake also matter."
+    )
+    st.stop()
+
+elif selected_detail == "Recovery":
+    show_detail_page(
+        title="Recovery",
+        intro="Your body is slowly returning to a calmer state. The caffeine effect is lower now.",
+        tips=[
+            "Drink water and listen to your natural energy level.",
+            "Fresh air, food or rest may help more than another coffee.",
+            "Use this phase to return to a more balanced rhythm.",
+            "Avoid taking caffeine automatically just because the effect is fading."
+        ],
+        warning="If you often rely on caffeine again during recovery, it can become a repeating cycle."
+    )
+    st.stop()
+
+# -----------------------------
 # CHART
 # -----------------------------
 def draw_recommendation_chart(initial_mg: float, hours_passed: float):
@@ -303,3 +431,35 @@ with col3:
 draw_recommendation_chart(initial_mg, hours_passed)
 
 st.success(f"Current interpretation: **{phase_name}** — {phase_text}")
+
+st.markdown("### Choose how you feel")
+
+col_a, col_b = st.columns(2)
+
+with col_a:
+    if st.button("Peak", use_container_width=True):
+        st.session_state["recommendation_detail"] = "Peak"
+        st.rerun()
+
+    if st.button("I feel tired", use_container_width=True):
+        st.session_state["recommendation_detail"] = "I feel tired"
+        st.rerun()
+
+    if st.button("I feel anxious", use_container_width=True):
+        st.session_state["recommendation_detail"] = "I feel anxious"
+        st.rerun()
+
+with col_b:
+    if st.button("I can't fall asleep", use_container_width=True):
+        st.session_state["recommendation_detail"] = "I can't fall asleep"
+        st.rerun()
+
+    if st.button("I can't concentrate", use_container_width=True):
+        st.session_state["recommendation_detail"] = "I can't concentrate"
+        st.rerun()
+
+    if st.button("Recovery", use_container_width=True):
+        st.session_state["recommendation_detail"] = "Recovery"
+        st.rerun()
+
+show_phase_help()
