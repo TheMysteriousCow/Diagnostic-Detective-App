@@ -17,13 +17,15 @@ st.markdown(
             padding-bottom: 3rem;
         }
 
+        /* ✅ Titel angepasst wie bei anderen Seiten */
         .help-title {
             text-align: center;
-            font-size: 5rem;
-            font-weight: 800;
-            color: #6b4a3b;
-            line-height: 1;
-            margin-bottom: 0.5rem;
+            font-size: 3.4rem;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 600;
+            color: #5C4033;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
         }
 
         .help-subtitle {

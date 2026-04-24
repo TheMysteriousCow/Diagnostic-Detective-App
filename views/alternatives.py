@@ -2,22 +2,39 @@ import streamlit as st
 
 st.set_page_config(page_title="Alternatives", layout="wide")
 
-# Titel + Beschreibung
-st.markdown("<h1 style='color:#5C4033; font-family: serif;'>Alternatives</h1>", unsafe_allow_html=True)
-
-st.markdown(
-    "<p style='color:#5C4033; font-size:16px; font-family: serif;'>"
-    "Here you can explore alternative options to your usual caffeine intake. "
-    "Choosing the right alternative can help you better manage your energy levels, "
-    "reduce side effects such as nervousness or crashes, and support a more balanced and sustainable routine. "
-    "Whether you want a smoother caffeine source or avoid caffeine completely, these options can support your well-being."
-    "</p>",
-    unsafe_allow_html=True
-)
-
+# =========================
 # Styling
+# =========================
 st.markdown("""
 <style>
+.stApp {
+    background-color: white;
+}
+
+h1, h2, h3, h4, h5, h6, label {
+    color: #5C4033 !important;
+}
+
+/* Titel wie bei Your Profile */
+.main-title {
+    text-align: center;
+    font-size: 3.4rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    color: #5C4033;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+/* Beschreibung: normale Standardschrift */
+.description-text {
+    color: #5C4033;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
 div.stButton > button {
     width: 100%;
     background-color: #CDECCF;
@@ -27,7 +44,7 @@ div.stButton > button {
     font-size: 15px;
     margin-bottom: 18px;
     border: none;
-    font-family: serif;
+    font-family: Arial, sans-serif;
 }
 
 .info-box {
@@ -37,12 +54,36 @@ div.stButton > button {
     margin-top: 20px;
     background-color: white;
     color: black;
-    font-family: serif;
+    font-family: Arial, sans-serif;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# VOLLE TEXTE
+# =========================
+# Titel + Beschreibung
+# =========================
+st.markdown(
+    "<div class='main-title'>Alternatives</div>",
+    unsafe_allow_html=True
+)
+
+st.write("")
+
+st.markdown(
+    """
+    <p class='description-text'>
+    Here you can explore alternative options to your usual caffeine intake.
+    Choosing the right alternative can help you better manage your energy levels,
+    reduce side effects such as nervousness or crashes, and support a more balanced and sustainable routine.
+    Whether you want a smoother caffeine source or avoid caffeine completely, these options can support your well-being.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
+
+# =========================
+# Texte
+# =========================
 texts = {
     "Guarana": """
 Guarana is a natural source of caffeine and a good caffeine alternative.  
@@ -91,18 +132,27 @@ One cup usually contains around 40–70 mg of caffeine, depending on the strengt
 """
 }
 
+# =========================
 # Session
+# =========================
 if "selected_alternative" not in st.session_state:
     st.session_state.selected_alternative = None
 
+# =========================
 # Bild + Button Funktion
+# =========================
 def image_button(label, image_path):
     st.image(image_path, use_container_width=True)
     if st.button(label, key=label):
         st.session_state.selected_alternative = label
 
-# --- WITH CAFFEINE ---
-st.markdown("<h3 style='color:#5C4033; font-family: serif;'>With Caffeine</h3>", unsafe_allow_html=True)
+# =========================
+# With Caffeine
+# =========================
+st.markdown(
+    "<h3 style='color:#5C4033; font-family: Georgia, serif;'>With Caffeine</h3>",
+    unsafe_allow_html=True
+)
 
 col1, col2, col3 = st.columns(3)
 
@@ -115,8 +165,13 @@ with col2:
 with col3:
     image_button("Black tea", "images/Blacktea.png")
 
-# --- WITHOUT CAFFEINE ---
-st.markdown("<h3 style='color:#5C4033; font-family: serif;'>Without Caffeine</h3>", unsafe_allow_html=True)
+# =========================
+# Without Caffeine
+# =========================
+st.markdown(
+    "<h3 style='color:#5C4033; font-family: Georgia, serif;'>Without Caffeine</h3>",
+    unsafe_allow_html=True
+)
 
 col4, col5, col6 = st.columns(3)
 
@@ -129,7 +184,9 @@ with col5:
 with col6:
     image_button("Kokoa", "images/Cocoa.png")
 
+# =========================
 # Infobox
+# =========================
 if st.session_state.selected_alternative:
     selected = st.session_state.selected_alternative
     st.markdown(
