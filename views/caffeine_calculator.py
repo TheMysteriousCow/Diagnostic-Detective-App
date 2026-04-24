@@ -43,6 +43,7 @@ def set_logo_top_right(image_file: str):
 # =========================
 image_path = os.path.join(os.getcwd(), "images", "logo.png")
 set_logo_top_right(image_path)
+
 # -----------------------------
 # STYLE
 # -----------------------------
@@ -131,21 +132,23 @@ drinks = {
 PEAK_MINUTES = 45
 CRASH_HOURS = 4
 RECOVERY_HOURS = 8
-HALF_LIFE_HOURS = 5
-EFFECTIVE_THRESHOLD_MG = 5
 
-def time_until_effectively_gone(caffeine_mg):
-    if caffeine_mg <= EFFECTIVE_THRESHOLD_MG:
+# Wirkung statt kompletter Abbau
+BASE_EFFECT_HOURS = 3.0
+REFERENCE_CAFFEINE_MG = 80
+MAX_EFFECT_HOURS = 6.0
+
+def caffeine_effect_duration_hours(caffeine_mg):
+    """
+    Schätzt, wie lange Koffein spürbar wirkt.
+    Höhere Koffeinmenge = längere spürbare Wirkung.
+    Die Wirkung wird aber realistisch gedeckelt.
+    """
+    if caffeine_mg <= 0:
         return 0
 
-    hours = 0
-    remaining = caffeine_mg
-
-    while remaining > EFFECTIVE_THRESHOLD_MG:
-        hours += 0.25
-        remaining = caffeine_mg * (0.5 ** (hours / HALF_LIFE_HOURS))
-
-    return hours
+    effect_hours = BASE_EFFECT_HOURS + (caffeine_mg / REFERENCE_CAFFEINE_MG) * 1.2
+    return min(effect_hours, MAX_EFFECT_HOURS)
 
 def format_hours(hours):
     total_minutes = int(round(hours * 60))
@@ -225,8 +228,8 @@ if st.session_state.selected_drink:
     volume_ml = st.session_state.selected_volume_ml
     start_time = st.session_state.drink_start_time
 
-    gone_hours = time_until_effectively_gone(caffeine_mg)
-    gone_seconds = int(gone_hours * 3600)
+    effect_hours = caffeine_effect_duration_hours(caffeine_mg)
+    effect_seconds = int(effect_hours * 3600)
 
     st.success(f"You selected: **{selected_drink}**")
 
@@ -244,9 +247,9 @@ if st.session_state.selected_drink:
         st.metric("Recovery", f"{RECOVERY_HOURS} h", f"{RECOVERY_HOURS * 60} min")
 
     with col4:
-        st.metric("Almost no effect", format_hours(gone_hours))
+        st.metric("Effect duration", format_hours(effect_hours))
 
-    end_time = start_time + gone_seconds
+    end_time = start_time + effect_seconds
 
     html = f"""
     <div style="
@@ -271,7 +274,7 @@ if st.session_state.selected_drink:
                 font-size:1.1rem;
                 margin-bottom:10px;
             ">
-                Countdown until caffeine is almost ineffective
+                Countdown while caffeine is still working
             </div>
 
             <div id="countdown" style="
@@ -336,7 +339,7 @@ if st.session_state.selected_drink:
             if (remaining <= 0) {{
                 remaining = 0;
                 document.getElementById("countdown").innerHTML = "0 h 0 min 0 s";
-                document.getElementById("status").innerHTML = "The caffeine is now almost ineffective.";
+                document.getElementById("status").innerHTML = "The main caffeine effect is now likely over.";
                 document.getElementById("liquid").style.height = "0%";
                 return;
             }}
@@ -364,5 +367,8 @@ if st.session_state.selected_drink:
 
     st.info(
         f"{selected_drink} contains **{caffeine_mg} mg caffeine** in **{volume_ml} ml**. "
-        f"The caffeine is estimated to be almost ineffective after **{format_hours(gone_hours)}**."
+        f"The noticeable caffeine effect is estimated to last about **{format_hours(effect_hours)}**."
     )
+
+# Die Formel, die ich verwendet habe Die Wirkzeit wird so berechnet:
+# Wirkdauer = 3h + (Koffein in mg / 80) *1.2
