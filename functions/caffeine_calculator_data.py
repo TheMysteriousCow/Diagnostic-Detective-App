@@ -1,30 +1,17 @@
-import os
-import json
-import time
-
-import pandas as pd
 import streamlit as st
-import streamlit.components.v1 as components
-
+import pandas as pd
 from utils.data_manager import DataManager
+from functions.caffeine_calculator_math import caffeine_effect_duration_hours
 
-from functions.caffeine_calculator_math import (
-    PEAK_MINUTES,
-    CRASH_HOURS,
-    RECOVERY_HOURS,
-    search_matches,
-    caffeine_effect_duration_hours,
-    format_hours,
-    get_risk_level,
-    reset_caffeine_session_after_clear,
-)
 
+username = st.session_state.get("username", "default_user")
+DATA_FILE = f"data_{username}.csv"
+CURRENT_FILE = f"current_caffeine_{username}.json"
 
 data_manager = DataManager(
     fs_protocol="webdav",
     fs_root_folder="caffeine_calculator_app"
 )
-
 
 DRINKS = {
     "Red Bull": {"image": "Redbull.png", "caffeine_mg": 114, "volume_ml": 355},
@@ -45,18 +32,6 @@ DRINKS = {
 }
 
 
-def get_username():
-    return st.session_state.get("username", "default_user")
-
-
-def get_data_file():
-    return f"data_{get_username()}.csv"
-
-
-def get_current_file():
-    return f"current_caffeine_{get_username()}.json"
-
-
 def empty_current_data():
     return {
         "entries": [],
@@ -68,7 +43,7 @@ def empty_current_data():
 
 def load_history():
     return data_manager.load_user_data(
-        get_data_file(),
+        DATA_FILE,
         initial_value=pd.DataFrame(columns=[
             "timestamp",
             "Drink",
@@ -79,32 +54,30 @@ def load_history():
 
 
 def save_history(df):
-    data_manager.save_user_data(df, get_data_file())
+    data_manager.save_user_data(df, DATA_FILE)
 
 
 def load_current():
     data = data_manager.load_user_data(
-        get_current_file(),
+        CURRENT_FILE,
         initial_value=empty_current_data()
     )
 
     if isinstance(data, str):
         try:
+            import json
             data = json.loads(data)
-        except Exception:
+        except:
             return empty_current_data()
 
     if not isinstance(data, dict):
         return empty_current_data()
 
-    if "entries" not in data:
-        data["entries"] = []
-
     return data
 
 
 def save_current(data):
-    data_manager.save_user_data(data, get_current_file())
+    data_manager.save_user_data(data, CURRENT_FILE)
 
 
 def clear_current():
@@ -178,235 +151,6 @@ def add_drink_to_current(drink_name, drink_info, selected_datetime, selected_uni
     save_history(history_df)
 
     return current_data
-
-
-def render_header():
-    st.markdown("<div class='main-title'>Caffeine Calculator</div>", unsafe_allow_html=True)
-    st.markdown(
-        "<div class='subtitle'>Choose your drink and calculate your caffeine intake.</div>",
-        unsafe_allow_html=True
-    )
-
-
-def render_drink_selector():
-    st.markdown("<div class='section-title'>Choose your Drink</div>", unsafe_allow_html=True)
-
-    left, center, right = st.columns([1, 4, 1])
-
-    with center:
-        st.markdown("### Select date and time")
-
-        date_col, time_col = st.columns(2)
-
-        with date_col:
-            st.date_input("Date", key="intake_date")
-
-        with time_col:
-            st.time_input("Time", key="intake_time", step=60)
-
-        selected_datetime = pd.Timestamp.combine(
-            st.session_state.intake_date,
-            st.session_state.intake_time
-        )
-
-        selected_timestamp = pd.Timestamp(selected_datetime)
-        selected_unix_time = int(selected_timestamp.timestamp())
-
-        search_text = st.text_input(
-            "Search drink",
-            placeholder="Example: redbull, latte machiato, coffe..."
-        )
-
-        filtered_drinks = {
-            name: info
-            for name, info in DRINKS.items()
-            if search_matches(search_text, name)
-        }
-
-        if len(filtered_drinks) == 0:
-            st.info("No drink found. Try another spelling.")
-
-        drink_items = list(filtered_drinks.items())
-
-        for i in range(0, len(drink_items), 3):
-            cols = st.columns(3)
-
-            for col, item in zip(cols, drink_items[i:i + 3]):
-                drink_name, info = item
-
-                with col:
-                    st.markdown("<div class='drink-card'>", unsafe_allow_html=True)
-
-                    drink_image_path = os.path.join("images", info["image"])
-
-                    if os.path.exists(drink_image_path):
-                        st.image(drink_image_path, use_container_width=True)
-                    else:
-                        st.write("🥤")
-
-                    if st.button(drink_name, key=f"drink_{drink_name}", use_container_width=True):
-                        current_data = add_drink_to_current(
-                            drink_name,
-                            info,
-                            selected_datetime,
-                            selected_unix_time
-                        )
-
-                        last_entry = current_data.get("last_drink", {})
-
-                        st.session_state.current_data = current_data
-                        st.session_state.selected_drink = last_entry.get("Drink")
-                        st.session_state.selected_caffeine_mg = last_entry.get("Caffeine (mg)", 0)
-                        st.session_state.selected_volume_ml = last_entry.get("Volume (ml)", 0)
-                        st.session_state.drink_start_time = last_entry.get("start_time")
-                        st.session_state.countdown_end_time = current_data.get("countdown_end_time")
-                        st.session_state.countdown_total_seconds = current_data.get("countdown_total_seconds", 0)
-                        st.session_state.scroll_to_timeline = True
-                        st.rerun()
-
-                    st.markdown("</div>", unsafe_allow_html=True)
-
-
-def render_caffeine_timeline():
-    current_data, current_entries, current_df, current_total = get_current_summary()
-
-    now = int(time.time())
-    end_time = current_data.get("countdown_end_time")
-    has_active_current_entries = bool(current_entries) and end_time and end_time > now
-
-    if not has_active_current_entries:
-        return
-
-    st.markdown("<div id='caffeine-timeline'></div>", unsafe_allow_html=True)
-
-    if st.session_state.scroll_to_timeline:
-        components.html("""
-        <script>
-            const timeline = window.parent.document.querySelector('#caffeine-timeline');
-            if (timeline) {
-                timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        </script>
-        """, height=0)
-
-        st.session_state.scroll_to_timeline = False
-
-    last_drink = current_data.get("last_drink", {})
-    selected_drink = last_drink.get("Drink", "Selected drink")
-    caffeine_mg = last_drink.get("Caffeine (mg)", 0)
-    volume_ml = last_drink.get("Volume (ml)", 0)
-
-    total_seconds = max(current_data.get("countdown_total_seconds", 1), 1)
-    effect_hours = caffeine_effect_duration_hours(caffeine_mg)
-
-    saved_timestamp = last_drink.get("timestamp", "")
-    saved_timestamp_display = pd.to_datetime(saved_timestamp, errors="coerce")
-
-    st.success(f"You selected: **{selected_drink}**")
-
-    if not pd.isna(saved_timestamp_display):
-        st.write(f"Saved date and time: **{saved_timestamp_display.strftime('%d.%m.%Y %H:%M')}**")
-
-    st.markdown("### Caffeine Timeline")
-
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        st.metric("Peak", f"{PEAK_MINUTES} min", "about 0 h 45 min")
-
-    with col2:
-        st.metric("Crash", f"{CRASH_HOURS} h", f"{CRASH_HOURS * 60} min")
-
-    with col3:
-        st.metric("Recovery", f"{RECOVERY_HOURS} h", f"{RECOVERY_HOURS * 60} min")
-
-    with col4:
-        remaining_seconds = max(end_time - now, 0)
-        remaining_hours = remaining_seconds / 3600
-        st.metric("Remaining effect", format_hours(remaining_hours))
-
-    components.html(build_countdown_html(end_time, total_seconds), height=330)
-
-    st.info(
-        f"{selected_drink} contains **{caffeine_mg} mg caffeine** in **{volume_ml} ml**. "
-        f"This drink adds about **{format_hours(effect_hours)}** to your caffeine effect countdown."
-    )
-
-
-def render_current_entries():
-    current_data, current_entries, current_df, current_total = get_current_summary()
-
-    st.markdown("<div class='clear-card'>", unsafe_allow_html=True)
-    st.markdown("<div class='personal-title'>Current Calculator Entries</div>", unsafe_allow_html=True)
-
-    if current_entries:
-        st.metric("Current caffeine in calculator", f"{current_total:.0f} mg")
-
-        if st.button("Clear current calculator entries", use_container_width=True):
-            reset_caffeine_session_after_clear()
-            st.session_state.current_data = clear_current()
-            st.rerun()
-    else:
-        st.info("No current calculator entries. The countdown is empty.")
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-def render_personal_impact(profile_weight, profile_height):
-    current_data, current_entries, current_df, current_total = get_current_summary()
-
-    st.markdown("<div class='personal-card'>", unsafe_allow_html=True)
-    st.markdown("<div class='personal-title'>Personalized Caffeine Impact</div>", unsafe_allow_html=True)
-
-    if profile_weight and profile_weight > 0:
-        mg_per_kg = current_total / profile_weight
-        personal_daily_limit = profile_weight * 3
-        daily_percentage = min((current_total / personal_daily_limit) * 100, 999)
-
-        risk_level, risk_text = get_risk_level(mg_per_kg)
-
-        pcol1, pcol2, pcol3, pcol4 = st.columns(4)
-
-        with pcol1:
-            st.metric("Body weight", f"{profile_weight:g} kg")
-
-        with pcol2:
-            st.metric("Dose per kg current", f"{mg_per_kg:.2f} mg/kg")
-
-        with pcol3:
-            st.metric("Current intake", f"{current_total:.0f} mg")
-
-        with pcol4:
-            st.metric("Personal daily guide", f"{personal_daily_limit:.0f} mg")
-
-        st.progress(min(daily_percentage / 100, 1.0))
-
-        st.write(
-            f"You have used **{daily_percentage:.0f}%** "
-            f"of your personal caffeine guide in the current calculator."
-        )
-
-        if risk_level == "Low":
-            st.success(f"Risk level: {risk_level} — {risk_text}")
-        elif risk_level == "Moderate":
-            st.warning(f"Risk level: {risk_level} — {risk_text}")
-        else:
-            st.error(f"Risk level: {risk_level} — {risk_text}")
-
-        if profile_height and profile_height > 0:
-            bmi = profile_weight / (profile_height ** 2)
-            st.caption(
-                f"Your saved height is {profile_height:g} m. Your BMI is approximately {bmi:.1f}. "
-                f"Height is shown for profile context, but caffeine impact is mainly calculated using body weight."
-            )
-
-    else:
-        st.warning(
-            "No valid weight found in your profile. Please enter your weight in Your Profile "
-            "to get a personalized caffeine calculation."
-        )
-
-    st.markdown("</div>", unsafe_allow_html=True)
 
 
 def get_page_css():

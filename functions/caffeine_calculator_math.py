@@ -1,10 +1,6 @@
 import re
-import time
 import unicodedata
-from datetime import datetime
 from difflib import SequenceMatcher
-
-import streamlit as st
 
 
 PEAK_MINUTES = 45
@@ -66,57 +62,3 @@ def get_risk_level(mg_per_kg):
         return "Moderate", "Your caffeine dose is moderate for your body weight."
     else:
         return "High", "This is a high caffeine dose for your body weight."
-
-
-def initialize_caffeine_session(load_history_func, load_current_func):
-    defaults = {
-        "selected_drink": None,
-        "selected_caffeine_mg": 0,
-        "selected_volume_ml": 0,
-        "drink_start_time": None,
-        "countdown_end_time": None,
-        "countdown_total_seconds": 0,
-        "scroll_to_timeline": False,
-        "intake_date": datetime.now().date(),
-        "intake_time": datetime.now().time().replace(microsecond=0),
-    }
-
-    for key, value in defaults.items():
-        if key not in st.session_state:
-            st.session_state[key] = value
-
-    if "data_df" not in st.session_state:
-        st.session_state["data_df"] = load_history_func()
-
-    if "current_data" not in st.session_state:
-        st.session_state.current_data = load_current_func()
-
-
-def restore_active_countdown_to_session(load_current_func):
-    current_data = load_current_func()
-    current_entries = current_data.get("entries", [])
-    last_drink = current_data.get("last_drink")
-
-    now_check = int(time.time())
-    current_end_time = current_data.get("countdown_end_time")
-
-    if current_entries and current_end_time and current_end_time > now_check:
-        st.session_state.countdown_end_time = current_end_time
-        st.session_state.countdown_total_seconds = current_data.get("countdown_total_seconds", 0)
-
-        if last_drink:
-            st.session_state.selected_drink = last_drink.get("Drink")
-            st.session_state.selected_caffeine_mg = last_drink.get("Caffeine (mg)", 0)
-            st.session_state.selected_volume_ml = last_drink.get("Volume (ml)", 0)
-            st.session_state.drink_start_time = last_drink.get("start_time", now_check)
-
-
-def reset_caffeine_session_after_clear():
-    st.session_state.current_data = None
-    st.session_state.selected_drink = None
-    st.session_state.selected_caffeine_mg = 0
-    st.session_state.selected_volume_ml = 0
-    st.session_state.drink_start_time = None
-    st.session_state.countdown_end_time = None
-    st.session_state.countdown_total_seconds = 0
-    st.session_state.scroll_to_timeline = False
