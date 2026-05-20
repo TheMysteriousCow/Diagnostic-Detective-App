@@ -4,14 +4,19 @@ from utils.data_manager import DataManager
 from functions.caffeine_calculator_math import caffeine_effect_duration_hours
 
 
-username = st.session_state.get("username", "default_user")
-DATA_FILE = f"data_{username}.csv"
-CURRENT_FILE = f"current_caffeine_{username}.json"
-
 data_manager = DataManager(
     fs_protocol="webdav",
     fs_root_folder="caffeine_calculator_app"
 )
+
+
+def get_data_files():
+    username = st.session_state.get("username", "default_user")
+    return (
+        f"data_{username}.csv",
+        f"current_caffeine_{username}.json"
+    )
+
 
 DRINKS = {
     "Red Bull": {"image": "Redbull.png", "caffeine_mg": 114, "volume_ml": 355},
@@ -42,8 +47,10 @@ def empty_current_data():
 
 
 def load_history():
+    data_file, _ = get_data_files()
+
     return data_manager.load_user_data(
-        DATA_FILE,
+        data_file,
         initial_value=pd.DataFrame(columns=[
             "timestamp",
             "Drink",
@@ -54,12 +61,15 @@ def load_history():
 
 
 def save_history(df):
-    data_manager.save_user_data(df, DATA_FILE)
+    data_file, _ = get_data_files()
+    data_manager.save_user_data(df, data_file)
 
 
 def load_current():
+    _, current_file = get_data_files()
+
     data = data_manager.load_user_data(
-        CURRENT_FILE,
+        current_file,
         initial_value=empty_current_data()
     )
 
@@ -77,7 +87,8 @@ def load_current():
 
 
 def save_current(data):
-    data_manager.save_user_data(data, CURRENT_FILE)
+    _, current_file = get_data_files()
+    data_manager.save_user_data(data, current_file)
 
 
 def clear_current():
