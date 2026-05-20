@@ -4,7 +4,7 @@ import streamlit as st
 from datetime import datetime
 
 
-DIARY_FILE = "diary.csv"
+DIARY_FILE = f"diary.csv"
 
 
 def empty_diary_df():
