@@ -2,9 +2,7 @@ import pandas as pd
 import streamlit as st
 
 
-username = st.session_state.get("username", "default_user")
-DIARY_FILE = f"diary.csv"
-DATA_FILE = f"data.csv"
+DATA_FILE = "data.csv"
 
 
 def empty_history_df():
