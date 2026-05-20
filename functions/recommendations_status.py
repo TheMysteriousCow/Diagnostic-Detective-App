@@ -16,8 +16,8 @@ HALF_LIFE = 5.0
 
 
 def get_data_files():
-    username = st.session_state.get("username", "default_user")
-    return f"data_{username}.csv", f"current_caffeine_{username}.json"
+    #username = st.session_state.get("username", "default_user")#
+    return f"data.csv", f"current_caffeine.json"
 
 
 def get_data_manager():

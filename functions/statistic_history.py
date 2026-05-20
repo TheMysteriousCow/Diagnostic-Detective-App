@@ -3,8 +3,8 @@ import streamlit as st
 
 
 username = st.session_state.get("username", "default_user")
-DIARY_FILE = f"diary_{username}.csv"
-DATA_FILE = f"data_{username}.csv"
+DIARY_FILE = f"diary.csv"
+DATA_FILE = f"data.csv"
 
 
 def empty_history_df():
